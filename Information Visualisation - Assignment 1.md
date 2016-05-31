@@ -314,7 +314,6 @@ Similar to the walkthrough example, you should first define your visual layout i
 6. Chart contains dynamically computed y-axis on the left
 7. Chart contains dynamically computed x-axis on the bottom
 
-
 ## Assignment Part II: Operating Systems Usage
 
 In the final part of the assignment you will create a visualisation for a small dataset containing statistics on Operating System usage. There are two subsets of data you can choose, one contains numbers on *desktop* operating systems and one contains numbers on *mobile* operating systems. **Please choose one of the datasets and clearly mention which one you use**. Both datasets are publicly available from [NetMarketShare.com](https://www.netmarketshare.com/), but you can download them from Blackboard:
@@ -333,7 +332,13 @@ You are free to choose the type of visualisation for displaying the data. Pay a 
 
 ## End of the Assignment
 
-The assignment is handed in through Blackboard: **do not send the deliverables per e-mail, they will get lost.** The deadline for this assignment can be found in the table at the top of this document. When your assignment contains multiple files, please make and upload a ZIP archive file to Blackboard.
+The assignment is handed in through Blackboard: **do not send the deliverables per e-mail, they will get lost.** The deadline for this assignment can be found in the table at the top of this document. When your assignment contains multiple files, please make and upload a ZIP archive file to Blackboard. Your deliverables should include at least the following:
+
+1. A short description of the visualization technique
+2. D3.js code used to produce the visualization
+3. Visualization result
+
+We should be able to open your visualisation with a single click, *i.e.* open the HTML file in the browser (e.g. dataset file should be in place). 
 
 ## References and Further Reading
 
