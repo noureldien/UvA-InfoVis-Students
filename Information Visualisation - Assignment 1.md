@@ -40,7 +40,7 @@ d3.v3.min.js:1 XMLHttpRequest cannot load file:///.../cbs_companies_in_netherlan
 
 **D3.js** is a JavaScript library for producing interactive data visualisations in the browser. The library is built for being very flexible and allows for creating highly complex and visually pleasing graphs, bar charts and animated data visualisations. One of its primary advantages over other visualisation libraries is the possibility to use all the modern web techniques such as SVG, HTML5 and CSS.
 
-The visualisations you will create all exist within the browser and are built using *scalable vector grapics* (SVG). D3.js uses JavaScript functions to select elements, create other elements, perform styling and adding animations. In addition, users can easily add their own styling or more complex visualisations using CSS and JavaScript. Central principle when using D3.js is selection of elements from the **[Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)** (DOM) on the page and the ability to modify them using operators similar to those used in [jQuery](https://jquery.com/). For example, by using D3.js we can easily select all the rectangles `<rect>` on a page and change their fill color to magenta and update the position:
+The visualisations you will create all exist within the browser and are built using *scalable vector graphics* (SVG). D3.js uses JavaScript functions to select elements, create other elements, perform styling and add animations. In addition, users can easily add their own styling or more complex visualisations using CSS and JavaScript. Central principle when using D3.js is selection of elements from the **[Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)** (DOM) on the page and the ability to modify them using operators similar to those used in [jQuery](https://jquery.com/). For example, by using D3.js we can easily select all the rectangles `<rect>` on a page, change their fill color to magenta and update the position:
 
 ```javascript
  d3.selectAll("rect")         // select all <p> elements
@@ -53,11 +53,11 @@ This example shows how we can select and modify elements based on the *type* (re
 
 ## Walkthrough: Creating a Simple Bar Chart
 
-In this walkthrough example we are going to create a simple bart chart displaying the total number of companies in The Netherlands. This data is publicly available by the Centraal Bureau voor Statistiek (CBS), if you are interested you can have a look at their webpage [Cijfers in Nederland](https://www.cbs.nl/nl-nl/cijfers). The bar chart you will create looks similar (although not exactly the same) as the following figure.
+In this walkthrough example we are going to create a simple bart chart displaying the total number of companies in The Netherlands. This data is publicly available by the Centraal Bureau voor Statistiek (CBS). If you are interested you can have a look at their webpage [Cijfers in Nederland](https://www.cbs.nl/nl-nl/cijfers). The bar chart you will create looks similar (although not exactly the same) as the following figure.
 
 ![Barchart](https://raw.githubusercontent.com/tomrunia/InformationVisualization/master/assets/assignment1-barchart.png?token=AFR5gcK4J5Td2blhpIcYUdRfrZQ3C90mks5XTwGhwA%3D%3D)
 
-The first thing we do is setting up an empty HTML document which will hold all the code for our visualisation. If you are familiar with HTML then you will immediatly recognize all the components; if not, you might want to study all the elements in the document. Create an empty document with the name `barchart.html` and put the following code inside it. 
+The first thing we need to do is setting up an empty HTML document which will hold all the code for our visualisation. If you are familiar with HTML then you will immediatly recognize all the components; if not, you might want to study all the elements in the document. Create an empty document with the name `barchart.html` and put the following code inside it. 
 
 ```html
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ The first thing we do is setting up an empty HTML document which will hold all t
 </script>
 ```
 
-As you can see in `Line 5` a CSS stylesheet is included. This file `barchart.css` contains all the visual styling for the chart you will create. In addition to the HTML file you just created, also create a file `barchart.css` in the same directory and then put the following style elements inside. Study the style attributes for each of the elements as you will use them later.
+As you can see in `Line 5` a CSS stylesheet is included. The file `barchart.css` contains all the visual styling for the chart you will create. In addition to the HTML file you just created, also create a file `barchart.css` in the same directory and then put the following style elements inside. Study the style attributes for each of the elements as you will use them later.
 
 ```css
 @charset "UTF-8";
@@ -130,7 +130,7 @@ body {
 
 If you open `barchart.html` in your browser at this point you will just see an blank page because we did not add any elements to the page. Now that we have a placeholder and styling for the chart, we continue by downloading the dataset that we will use for the visualisation. The dataset is available in [comma separated value](https://en.wikipedia.org/wiki/Comma-separated_values) (CSV) format from Blackboard under the name `cbs_companies_in_netherlands.csv`. Please download the dataset and put it in the same directory as the other two files you have created. As you study the contents of the dataset file, you will see that it contains the number of companies in The Netherlands over the period 2012 to 2016. For this simple walkthrough we will only use the total number of companies given in the second column (`Alle`). You will use the other columns denoting the number of companies per category later in this assignment.
 
-We are now going to setup the bar chart, *e.g.* the dimensions, location, axes of the figure. This is the first D3.js code that we will add to the document. Please include the following initialization code inside the empty `<script></script>` tags of `barchart.html`. Also study the code and the comments carefully as this defines the main appearance of our bar chart. In particular, note how we define variables for the dimensions of the graph (`widht`, `height`) to reuse them later for dynamically modifying the chart. Also note the scalings for the axes, for different datasets you might need to change the scalings accordingly. 
+We are now going to set up the bar chart, *e.g.* the dimensions, location, axes of the figure. This is the first D3.js code that we will add to the document. Please include the following initialization code inside the empty `<script></script>` tags of `barchart.html`. Also study the code and the comments carefully as this defines the main appearance of our bar chart. In particular, note how we define variables for the dimensions of the graph (`widht`, `height`) to reuse them later for dynamically modifying the chart. Also note the scalings for the axes, for different datasets you might need to change the scalings accordingly. 
 
 ```javascript
 // Define the size of the visualisation
@@ -168,7 +168,7 @@ var chart = d3.select(".chart")
     .style("padding", "60px")
 ```
 
-Although we have setup the bar chart, there is still nothing to show if you view the file in your browser. Next, we are going to load the dataset and complete the bar chart based on the data. Since our data is formatted as CSV, we can use the convenient `d3.csv` reader to load our data. Below the code you have just added, paste and study the following code:
+Although we have setup the bar chart, there is still nothing to show if you view the file in your browser. Next, we are going to load the dataset and complete the bar chart based on the data. Since our data is formatted as CSV, we can use the convenient `d3.csv` reader to load it. Below the code you have just added, paste and study the following code:
 
 ```javascript
 // Here we define the path to the .csv file we are going to load.
@@ -287,22 +287,22 @@ Now that we have loaded the dataset we can use it to append components to the ba
     .text("Number of Companies in the Netherlands");
 ```
 
-We have reached the end of the walkthrough, by now you should have created your first bar chart and understand the basics of D3. Most of the things that we have seen in this walkthrough you will also need for the first assignment. You can find the full code of `barchart.html` on this [page](https://gist.github.com/tomrunia/0bb8bfb84490dfbf9293092034086777) in case something went wrong. Remember to check the Chrome developer console by pressing `Ctrl+Shift+J` if you run into problems: the errors and warnings there will probably point you in the right direction for debugging. This walkthrough was just to get you started using D3.js, you can now continue with the first assignment.
+We have reached the end of the walkthrough. By now you should have created your first bar chart and understand the basics of D3. Most of the things that we have seen in this walkthrough you will also need for the first assignment. You can find the full code of `barchart.html` on this [page](https://gist.github.com/tomrunia/0bb8bfb84490dfbf9293092034086777) in case something went wrong. Remember to check the Chrome developer console by pressing `Ctrl+Shift+J` if you run into problems: the errors and warnings there will probably point you in the right direction for debugging. This walkthrough was just to get you started using D3.js. You can now continue with the first assignment.
 
 ## Assignment Part I: Stacked Bar Chart
 
-In this assignment, you are expected to create another simple chart, namely, stacked bar chart. Stacked bar charts are useful when visualising multiple dimensions of your data simultaneosly. The following figure shows how your stacked bar chart should look like. 
+In this assignment, you are expected to create another simple chart, namely, stacked bar chart. Stacked bar charts are useful when visualising multiple categories of your data simultaneosly. The following figure shows how your stacked bar chart should look like. 
 
 ![StackedBarChart](https://raw.githubusercontent.com/tomrunia/InformationVisualization/master/assets/StackedBarChart.png?token=AMJKHwbnBSCKiuN919pOdjYRhV_QcPPAks5XVYIuwA%3D%3D)
 
-In this assignment, you are going to work on the *following* dataset regarding the number of CBS companies in the Netherlands:
+In this assignment, you are going to work on the following CBS dataset regarding the number of companies in the Netherlands:
 `cbs_companies_in_netherlands.csv` - which can be found under the `/datasets` directory.
 
 Similar to the walkthrough example, you should first define your visual layout in a file called `stackedbarchart.css`. For this part, you can actually use the `.css` file we have provided you with in the walkthrough example. If you have grasped the idea of D3.js in the walkthrough, you will see that this one is very similar to a regular bar chart in implementation. In case you feel lost, we recommend you to check out examples on this [page](https://github.com/d3/d3/wiki/Gallery).
 
 **Hint-1:** In order to make your data speak for itself, you may want to consider picking only a subset of dimensions and discard the rest. This will basically avoid outputting too much information at the same time and hence your visualisation will make more sense to the viewer (and to you). 
 
-**Hint-2:** By visualising multiple subsets of dimensions, you can gain more insight on the data at hand. Therefore, you may want to create multiple `.csv` files in which only a selected subset of columns (*i.e.*, dimensions) exists and run your `stackedbarchart.html`, by specifying the desired `.csv` file, on your browser.
+**Hint-2:** By visualising multiple subsets of dimensions, you can gain more insight in the data at hand. Therefore, you may want to create multiple `.csv` files in which only a selected subset of columns (*i.e.*, dimensions) exists and run your `stackedbarchart.html`, by specifying the desired `.csv` file, on your browser.
 
 **Requirements:** The assignment is complete when it has met the following requirements:
 
@@ -317,12 +317,12 @@ Similar to the walkthrough example, you should first define your visual layout i
 
 ## Assignment Part II: Operating Systems Usage
 
-In this final part of the first assignment you will create a visualisation for a small dataset containing statistics on Operating System usage. There are two subsets of data you can choose, one contains numbers on *desktop* operating systems and one contains numbers on *mobile* operating systems. **Please choose one of the datasets and clearly mention which one you use**. Both datasets are publicly available from [NetMarketShare.com](https://www.netmarketshare.com/), but you can download them from BlackBoard:
+In the final part of the assignment you will create a visualisation for a small dataset containing statistics on Operating System usage. There are two subsets of data you can choose, one contains numbers on *desktop* operating systems and one contains numbers on *mobile* operating systems. **Please choose one of the datasets and clearly mention which one you use**. Both datasets are publicly available from [NetMarketShare.com](https://www.netmarketshare.com/), but you can download them from Blackboard:
 
 1. Desktop Operating Systems, april 2016: `operating_systems_desktop_april2016.csv`
 2. Mobile Operating Systems, april 2016: `operating_systems_mobile_april2016.csv`
 
-You are free to choose the type of visualisation for displaying the data. It might be necessary to check the lecture slides on Blackboard as a refresher to the kind of visualisations you can choose from. 
+You are free to choose the type of visualisation for displaying the data. Pay a close attention to the lecture slides as a pointer to the kind of visualisations you can choose from. 
 
 **Requirements:** The assignment is complete when it has met the following requirements:
 

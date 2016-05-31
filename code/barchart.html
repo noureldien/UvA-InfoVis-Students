@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- The visual styling of our barchart is in this file -->
+<link rel="stylesheet" href="barchart.css">
+
+<svg class="chart"></svg>
+
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+
+// Define the size of the visualisation
+var margin   = {top: 20, right: 20, bottom: 100, left: 60};
+var width    = 800-margin.left-margin.right;
+var height   = 500-margin.top-margin.bottom;
+
+// Scaling on x-axis is 'ordinal' indicating we show categories
+// Other scales are d3.time.scale() and d3.scale.linear()
+// Notice that the time scale might actually be more suited here.
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width]);
+
+// Scaling on y-axis is 'linear'
+var y = d3.scale.linear()
+    .rangeRound([height, 0], 1.0);
+
+// Set the scaling and orientation of the x-axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+// Set the scaling, ticks and orientation of the y-axis
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format(".3s"));
+
+// Initialize the barchart and the set position/spacings
+var chart = d3.select(".chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .style("padding", "60px")
+
+
+// More information on loading data files: https://github.com/d3/d3/wiki/CSV
+var csv_file   = "../datasets/cbs_companies_in_netherlands.csv";
+d3.csv(csv_file, function(error, data) {
+
+  // Check if an error occured while loading the data
+  if (error) throw error;
+
+  // Data formatting. Here we select the columns from the CSV file that we are
+  // going to use. For our simple bar chart we only use the 'periode' and 'alle'
+  // indicating the total number of companies in The Netherlands. 
+  data.forEach(function(d) {
+    d.time   =  d["periode"] // read as string
+    d.value  = +d["alle"]    // the plus (+) indicates converting to a number
+  });
+
+  // Define the width of each bar based on the number of data entries
+  var barWidth = width / data.length
+
+  // Data mapping to the x-axis. 
+  x.domain(data.map(function(d) { return d.time; }));
+
+  // Data mapping to the y-axis. Note how the axis spans from [0,max(data)] dynamically
+  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+  // Format the chart such that the width matches the number of data entries
+  chart.attr("width", width);
+
+  // Add the histogram bars and set the x-location based on the data
+  // Note "g" is a container for grouping other SVG elements
+  // Read more on this page: https://goo.gl/KQWB8m
+  var bar = chart.selectAll("g")
+      .data(data)
+    .enter().append("g")
+      .attr("transform", function(d, i) { 
+        // The x-location of the bar is defined in terms of the
+        // number of the bar and the width of the bars
+        return "translate(" + (i*barWidth) + ", 0)"; 
+      });
+
+  // Here we set the width, height and y-location of the bars
+  bar.append("rect")
+    .attr("y", function(d) { return y(d.value) })
+    .attr("height", function(d) { return height-y(d.value) })
+    .attr("width", barWidth - 1);
+
+  // Add text inside the bars to display the number of companies
+  bar.append("text")
+    .attr("x", barWidth / 2)
+    .attr("y", function(d) { return y(d.value) + 10; })
+    .attr("dy", ".5em")
+    .text(function(d) { return d.value; });
+
+  // Show the x-axis by calling xAxis
+  chart.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+  // Show the y-axis by calling yAxis
+  chart.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(0, 0)")
+    .call(yAxis);
+
+  // Select the labels on the x-axis and rotate them 45 degrees.
+  // This is not neccessary but makes the chart easier to read.
+  // The numbers -3.0 and 2.8 are somewhat arbitrary to 
+  // nicely position the labels.
+  chart.selectAll(".x text") 
+         .attr("transform", function(d) {
+             return "translate(" + (-3.0*this.getBBox().height) + "," + 
+                                   ( 2.8*this.getBBox().height) + ")" +
+                                   "rotate(-45)"
+        });
+
+  // Add axis labels to the chart (Note: these are not built-in to D3)
+  // Label x-axis
+  chart.append("text")
+    .attr("x", width/2.0)
+    .attr("y", height+100)
+    .style("font-weight", "bold")
+    .style("font-size", "14px")
+    .text("Periode");
+
+  // Label y-axis
+  chart.append("text")
+    .attr("text-anchor", "end")
+    .attr("y", -60)
+    .attr("x", -height/2.0)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .style("font-weight", "bold")
+    .style("font-size", "14px")
+    .text("Total Number of Companies")
+
+
+  // Add a title to the chart (Note: these are not built-in to D3)
+  chart.append("text")
+    .attr("x", (width/2.0))
+    .attr("y", -20)
+    .style("font-weight", "bold")
+    .style("font-size", 18)
+    .text("Number of Companies in the Netherlands");
+
+});
+
+
+</script>

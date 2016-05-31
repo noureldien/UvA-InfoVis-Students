@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+body {
+  font: 10px sans-serif;
+  padding: 40px 60px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.y.axis line,
+.y.axis path {
+  fill: none;
+  stroke: #000;
+}
+
+.chart rect {
+  fill: #2F81A6;
+  opacity: 0.8
+}
+
+.chart rect:hover {
+  opacity: 1.0;
+}
+
+.chart text {
+  fill: #000;
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
