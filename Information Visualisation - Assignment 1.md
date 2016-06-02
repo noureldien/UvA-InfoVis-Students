@@ -55,7 +55,7 @@ This example shows how we can select and modify elements based on the *type* (re
 
 In this walkthrough example we are going to create a simple bart chart displaying the total number of companies in The Netherlands. This data is publicly available by the Centraal Bureau voor Statistiek (CBS). If you are interested you can have a look at their webpage [Cijfers in Nederland](https://www.cbs.nl/nl-nl/cijfers). The bar chart you will create looks similar (although not exactly the same) as the following figure.
 
-![Barchart](https://raw.githubusercontent.com/tomrunia/InformationVisualization/master/assets/assignment1-barchart.png?token=AFR5gcK4J5Td2blhpIcYUdRfrZQ3C90mks5XTwGhwA%3D%3D)
+![Barchart](https://raw.githubusercontent.com/tomrunia/UvA-InfoVis-Students/master/assets/assignment1-barchart.png)
 
 The first thing we need to do is setting up an empty HTML document which will hold all the code for our visualisation. If you are familiar with HTML then you will immediatly recognize all the components; if not, you might want to study all the elements in the document. Create an empty document with the name `barchart.html` and put the following code inside it. 
 
@@ -293,7 +293,7 @@ We have reached the end of the walkthrough. By now you should have created your 
 
 In this assignment, you are expected to create another simple chart, namely, stacked bar chart. Stacked bar charts are useful when visualising multiple categories of your data simultaneosly. The following figure shows how your stacked bar chart should look like. 
 
-![StackedBarChart](https://raw.githubusercontent.com/tomrunia/InformationVisualization/master/assets/StackedBarChart.png?token=AMJKHwbnBSCKiuN919pOdjYRhV_QcPPAks5XVYIuwA%3D%3D)
+![StackedBarChart](https://raw.githubusercontent.com/tomrunia/UvA-InfoVis-Students/master/assets/assignment1-stackedbarchart.png)
 
 In this assignment, you are going to work on the following CBS dataset regarding the number of companies in the Netherlands:
 `cbs_companies_in_netherlands.csv` - which can be found under the `/datasets` directory.
